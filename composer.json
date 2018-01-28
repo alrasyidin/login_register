@@ -1,0 +1,13 @@
+{
+    "name": "hamstergeek/login_register",
+    "description": "This is login and register simple system which tell you about simplicity",
+    "authors": [
+        {
+            "name": "Hamstergeek",
+            "email": "hamstergeek38@gmail.com"
+        }
+    ],
+    "require": {
+        "phpmailer/phpmailer": "^6.0"
+    }
+}

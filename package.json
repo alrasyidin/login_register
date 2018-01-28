@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "font-awesome": "^4.7.0",
+    "sweetalert2": "^7.3.5"
+  },
+  "name": "projectUAS",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Hamstergeek <hamstergeek38@gmail.com>",
+  "license": "MIT"
+}
