@@ -1,8 +1,11 @@
 <?php  
 
 require_once "core/init.php";
-
+$_SESSION = [];
+session_unset();
 session_destroy();
-unset($_SESSION["user_id"]);
+
+setcookie("id", "", time() - 3600);
+setcookie("key", "", time() - 3600);
 
 header("Location: index.php");

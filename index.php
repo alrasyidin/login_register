@@ -2,6 +2,7 @@
 
 include "core/init.php";
 
+check_cookie();
 logged_in_redirect();
 
 ?>

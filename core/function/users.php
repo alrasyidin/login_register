@@ -110,7 +110,7 @@ function user_data($user_id){
 		$func_get_args = array_splice($func_get_args, 1);
 		$fields = implode_sql($func_get_args);
 
-		return mysqli_fetch_assoc(mysqli_query($link, "SELECT $fields FROM `users` WHERE `user_id` = $user_id"));
+		return mysqli_fetch_assoc( mysqli_query($link, "SELECT $fields FROM `users` WHERE `user_id` = $user_id") );
 	}
 }
 
@@ -158,14 +158,17 @@ function login($username, $password){
 	return (mysqli_fetch_row(mysqli_query($link, "SELECT COUNT(`user_id`) FROM `users` WHERE `username` = '$username' AND `password` = '$password'"))[0] == 1) ? $user_id : false;
 }
 
-function generate_user($data_pengguna){
+function generate_user($data_pengguna, $klausa = ""){
 	global $link;
 	escape_string($data_pengguna);
 
-	$fields = implode_sql(array_keys($data_pengguna));
-	$data   = implode_sql($data_pengguna, '\', \'', '\'');
+	
+	$fields = implode_sql($data_pengguna);
+	// $data   = implode_sql($data_pengguna, '\', \'', '\'');
 
-	return (mysqli_fetch_assoc(mysqli_query($link, "SELECT $fields FROM `users` WHERE `username` = '$data_pengguna[username]'")));
+	// echo "SELECT $fields FROM `users`";
+	// die();
+	return (mysqli_fetch_assoc( mysqli_query($link, "SELECT $fields FROM `users` $klausa")));
 }
 
 function update_user($data_pengguna){

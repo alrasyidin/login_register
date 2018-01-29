@@ -14,6 +14,23 @@ function logged_in_redirect(){
 	}
 }
 
+function check_cookie($cn = "login"){
+	if( isset($_COOKIE[$cn]) ){
+		if( $_COOKIE[$cn] === "true" ){
+			$id = $_COOKIE["id"];
+			$key = $_COOKIE["key"];
+
+			$hasil = generate_user([$username], "WHERE id = $id");
+
+
+			if( hash("sha256", $hasil["username"] )  === $key ){
+				header("Location: home.php");
+				exit;
+			}
+		}
+	}
+}
+
 function implode_sql($array, $pemisah = "`, `", $awal_akhir= '`'){
 	return $awal_akhir .implode($pemisah, $array ) . $awal_akhir;
 }

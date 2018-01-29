@@ -1,6 +1,5 @@
 <?php  
 	require_once "core/init.php";
-
 	
 	if(!empty($_POST)){
 		$username = $_POST['username'];
@@ -23,12 +22,19 @@
 			if( $login === false ){
 				$errors[] = "That username is correct but password is incorrect";
 			}else{
-				// if( isset($_GET["check_login"]) ){
-					$_SESSION["user_id"] = $login;
-					header("Location: home.php");
-				// }else{
-				// 	header("Location: home.php");
-				// }
+				$_SESSION["user_id"] = $login;
+
+				if( isset($_POST["check_login"]) ){
+					$data = generate_user([
+							"user_id", 
+							"username"
+						 ]);
+
+					setcookie("id", $data["user_id"], time() + 60 * 60 * 24 * 30);
+					setcookie("key", hash("sha256", $data["username"] ), time() + 60 * 60 * 24 * 30);
+				}
+
+				header("Location: home.php");
 			}
 
 			// session_destroy();

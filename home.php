@@ -1,5 +1,6 @@
 <?php  
 	include_once "core/init.php";
+	
 	protected_page();
 	include_once "template/header.php";
 ?>
